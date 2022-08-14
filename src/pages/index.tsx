@@ -1,31 +1,38 @@
+import { useAtomValue } from "jotai";
 import type { NextPage } from "next";
-import { Body } from "src/layouts/home/Body";
-import { Footer } from "src/layouts/home/Footer";
-import { Header } from "src/layouts/home/Header";
+import { Body } from "src/components/Forms/Body";
+import { openMenu } from "src/lib/atom";
 import { useMediaQuery, useViewportSize } from "src/lib/mantine";
+import { Layout } from "src/layouts/home/layout";
+import { TwitterIcon } from "src/components/icons/TwitterIcon";
+import { FacebookIcon } from "src/components/icons/FacebookIcon";
+import { Text } from "@mantine/core";
+import { RssIcon } from "@heroicons/react/solid";
 
 const Home: NextPage = () => {
-  const { width } = useViewportSize();
-  const largerThanXs = useMediaQuery("xs");
-  const largerThanSm = useMediaQuery("sm");
-  const largerThanMd = useMediaQuery("md");
-  const largerThanLg = useMediaQuery("lg");
-  const largerThanXl = useMediaQuery("xl");
+  const opened = useAtomValue(openMenu);
+  // const { width } = useViewportSize();
+  // const largerThanXs = useMediaQuery("xs");
+  // const largerThanSm = useMediaQuery("sm");
+  // const largerThanMd = useMediaQuery("md");
+  // const largerThanLg = useMediaQuery("lg");
+  // const largerThanXl = useMediaQuery("xl");
 
   return (
-    <div className="p-20">
-      {/* <div className="bg-fuchsia-200 xs:bg-red-200 sm:bg-amber-200 md:bg-lime-200 lg:bg-emerald-200 xl:bg-cyan-200">
-        <div>{`width: ${width}`}</div>
-        <div>{`largerThanXs: ${largerThanXs}`}</div>
-        <div>{`largerThanSm: ${largerThanSm}`}</div>
-        <div>{`largerThanMd: ${largerThanMd}`}</div>
-        <div>{`largerThanLg: ${largerThanLg}`}</div>
-        <div>{`largerThanXl: ${largerThanXl}`}</div>
-      </div> */}
-      <Header />
+    <Layout>
+      <div className="bg-pink-500 p-4 py-12">
+        <Text weight={700} color="white" size="xl">
+          Shimabu IT University
+        </Text>
+        <Text color="white">しまぶーのポートフォリオのためのページです</Text>
+        <div className="mt-8 flex">
+          <TwitterIcon className="mx-1" />
+          <FacebookIcon className="mx-1" />
+          <RssIcon className="mx-1 w-6 text-white" />
+        </div>
+      </div>
       <Body />
-      <Footer />
-    </div>
+    </Layout>
   );
 };
 

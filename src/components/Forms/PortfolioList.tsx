@@ -36,8 +36,13 @@ const data: PortfolioType[] = [
   },
 ];
 
-export const PortfolioList: FC = () => {
-  const [portfolioList] = useState<PortfolioType[]>(data);
+type Props = {
+  top: boolean;
+};
+
+export const PortfolioList: FC<Props> = (props) => {
+  const datawk: PortfolioType[] = props.top ? data.slice(0, 4) : data;
+  const [portfolioList] = useState<PortfolioType[]>(datawk);
   return (
     <div className="mt-8 w-full">
       <Title order={1} className="my-4 font-bold ">

@@ -28,12 +28,38 @@ const data: BlogType[] = [
     body: "Ament minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.",
     date: "2022.7.11",
   },
+  {
+    title: "This is a header",
+    body: "Ament minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.",
+    date: "2022.7.11",
+  },
+  {
+    title: "This is a header",
+    body: "Ament minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.",
+    date: "2022.7.11",
+  },
+  {
+    title: "This is a header",
+    body: "Ament minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.",
+    date: "2022.7.11",
+  },
+  {
+    title: "This is a header",
+    body: "Ament minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.",
+    date: "2022.7.11",
+  },
 ];
 
-export const BlogList: FC = () => {
-  const [blogList] = useState<BlogType[]>(data);
+type Props = {
+  top: boolean;
+};
+
+export const BlogList: FC<Props> = (props) => {
+  const datawk: BlogType[] = props.top ? data.slice(0, 4) : data;
+  const [blogList] = useState<BlogType[]>(datawk);
+
   return (
-    <div className="mt-8 w-full">
+    <div className="w-full pt-8">
       <Title order={1} className="my-4 font-bold ">
         Blog
       </Title>

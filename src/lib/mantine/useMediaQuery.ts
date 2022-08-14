@@ -1,4 +1,6 @@
 import { useMediaQuery as useMediaQueryOriginal } from "@mantine/hooks";
+import { atom } from "jotai";
+import { selectAtom } from "jotai/utils";
 
 /* Mantineと一致させる: https://mantine.dev/theming/responsive */
 const map = {
@@ -9,9 +11,17 @@ const map = {
   xl: "1400px",
 } as const;
 
-export const useMediaQuery = (
-  query: keyof typeof map,
-  initialValue: Parameters<typeof useMediaQueryOriginal>[1] = true
-) => {
-  return useMediaQueryOriginal(`(min-width: ${map[query]})`, initialValue);
-};
+export const mediaQuery = atom<boolean>(false);
+
+export const useMediaQuery = atom<null, keyof typeof map>(
+  null,
+  (get, set, update) => {
+    const query = update;
+    const initialValue: Parameters<typeof useMediaQueryOriginal>[1] = true;
+
+    set(
+      mediaQuery,
+      useMediaQueryOriginal(`(min-width: ${map[query]})`, initialValue)
+    );
+  }
+);

@@ -7,8 +7,8 @@ import { TwitterList } from "src/components/Forms/TwitterList";
 
 export const Body: FC = () => {
   return (
-    <div className="flex flex-col items-center">
-      <BlogList />
+    <div className="flex flex-col items-center ">
+      <BlogList top={true} />
       <div className="">
         <Button color="dark" radius="xl" size="xl" className="my-12">
           View All
