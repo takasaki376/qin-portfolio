@@ -14,7 +14,7 @@ export const Body: FC = () => {
           View All
         </Button>
       </div>
-      <PortfolioList />
+      <PortfolioList top={true} />
       <Button color="dark" radius="xl" size="xl" className="my-12">
         View All
       </Button>
