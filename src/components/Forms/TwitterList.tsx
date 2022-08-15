@@ -70,11 +70,11 @@ const regexp_url = /(https?:\/\/[\w/:%#\$&\?\(\)~\.=\+\-]+)/g;
 export const TwitterList: FC = () => {
   const [twitterList] = useState<TwitterType[]>(data);
   return (
-    <div className="mt-8 w-full">
+    <div className="mt-8 w-full  lg:mr-12 lg:pl-8">
       <Title order={1} className="my-4 font-bold ">
         Twitter
       </Title>
-      <Divider />
+      <Divider className="w-11/12" />
       {twitterList.map((twitter, key) => {
         return (
           <ul key={key}>
@@ -97,7 +97,7 @@ export const TwitterList: FC = () => {
                     {twitter.userId}・{twitter.date}
                   </Text>
                 </div>
-                <Text size="xl" className="whitespace-pre-wrap">
+                <Text size="xl" className="w-5/6 whitespace-pre-wrap">
                   {twitter.body}
                   {/* TODO：URLをリンクに変換する
                    {twitter.body.replace(

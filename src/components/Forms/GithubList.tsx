@@ -2,6 +2,7 @@ import { StarIcon } from "@heroicons/react/outline";
 import { Divider, Progress, Text, Title } from "@mantine/core";
 import { FC, useState } from "react";
 import { ForkIcon } from "src/components/icons/ForkIcon";
+import { useMediaQuery } from "src/lib/mantine";
 
 type languagesType = {
   language: string;
@@ -97,16 +98,99 @@ const data: GithubType[] = [
       },
     ],
   },
+  {
+    repository: "lightsound/nexst-tailwind",
+    body: "Next.js starter template.",
+    star: "117",
+    fork: "18",
+    languages: [
+      {
+        language: "TypeScript",
+        percentage: 65.5,
+      },
+      {
+        language: "JavaScript",
+        percentage: 30.7,
+      },
+      {
+        language: "Other",
+        percentage: 3.8,
+      },
+    ],
+  },
+  {
+    repository: "lightsound/nexst-tailwind",
+    body: "Next.js starter template.",
+    star: "117",
+    fork: "18",
+    languages: [
+      {
+        language: "TypeScript",
+        percentage: 65.5,
+      },
+      {
+        language: "JavaScript",
+        percentage: 30.7,
+      },
+      {
+        language: "Other",
+        percentage: 3.8,
+      },
+    ],
+  },
+  {
+    repository: "lightsound/nexst-tailwind",
+    body: "Next.js starter template.",
+    star: "117",
+    fork: "18",
+    languages: [
+      {
+        language: "TypeScript",
+        percentage: 65.5,
+      },
+      {
+        language: "JavaScript",
+        percentage: 30.7,
+      },
+      {
+        language: "Other",
+        percentage: 3.8,
+      },
+    ],
+  },
+  {
+    repository: "lightsound/nexst-tailwind",
+    body: "Next.js starter template.",
+    star: "117",
+    fork: "18",
+    languages: [
+      {
+        language: "TypeScript",
+        percentage: 65.5,
+      },
+      {
+        language: "JavaScript",
+        percentage: 30.7,
+      },
+      {
+        language: "Other",
+        percentage: 3.8,
+      },
+    ],
+  },
 ];
 
 export const GithubList: FC = () => {
-  const [githubList] = useState<GithubType[]>(data);
+  const isMediaQuery = useMediaQuery("lg");
+
+  const datawk: GithubType[] = isMediaQuery ? data.slice(0, 6) : data;
+  const [githubList] = useState<GithubType[]>(datawk);
   return (
-    <div className="mt-8 w-full">
+    <div className="mt-8 w-full lg:mr-8 lg:pl-12">
       <Title order={1} className="my-4 font-bold ">
         Github
       </Title>
-      <Divider />
+      <Divider className="w-11/12" />
       {githubList.map((github, key) => {
         return (
           <ul key={key}>
@@ -127,6 +211,7 @@ export const GithubList: FC = () => {
                   { value: 30.7, color: "yellow" },
                   { value: 3.8, color: "gray" },
                 ]}
+                className="w-10/12"
               />
               <div className="flex flex-row">
                 {github.languages.map((language, key) => {

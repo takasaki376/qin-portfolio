@@ -18,7 +18,7 @@ export const Layout: FC<Props> = (props) => {
       ) : (
         <div className="relative w-full">
           <Header />
-          <div className="w-full px-8 pt-16">{props.children}</div>
+          <div className="w-full  pt-16">{props.children}</div>
           <Footer />
         </div>
       )}

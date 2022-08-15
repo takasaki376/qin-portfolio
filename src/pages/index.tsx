@@ -20,7 +20,7 @@ const Home: NextPage = () => {
 
   return (
     <Layout>
-      <div className="bg-pink-500 p-4 py-12">
+      <div className="bg-pink-500 px-4 py-12">
         <Text weight={700} color="white" size="xl">
           Shimabu IT University
         </Text>

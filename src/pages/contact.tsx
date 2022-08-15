@@ -5,7 +5,7 @@ import { Layout } from "src/layouts/home/layout";
 const contact: NextPage = () => {
   return (
     <Layout>
-      <div className="w-full pt-8">
+      <div className="mx-8 w-full pb-16 pt-8 lg:mx-24">
         <Title order={1} className="my-4 font-bold ">
           Contact
         </Title>

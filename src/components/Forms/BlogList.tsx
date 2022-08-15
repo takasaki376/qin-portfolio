@@ -1,5 +1,6 @@
 import { Divider, Text, Title } from "@mantine/core";
 import { FC, useState } from "react";
+import cc from "classcat";
 
 type BlogType = {
   title: string;
@@ -59,11 +60,17 @@ export const BlogList: FC<Props> = (props) => {
   const [blogList] = useState<BlogType[]>(datawk);
 
   return (
-    <div className="w-full pt-8">
+    <div
+      className={cc({
+        "w-full pt-8 pb-16": true,
+        "px-8 lg:px-24": !props.top,
+      })}
+    >
       <Title order={1} className="my-4 font-bold ">
         Blog
       </Title>
       <Divider />
+
       {blogList.map((blog, key) => {
         return (
           <ul key={key}>
