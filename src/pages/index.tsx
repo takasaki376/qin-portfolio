@@ -24,11 +24,13 @@ const Home: NextPage = () => {
         <Text weight={700} color="white" size="xl">
           Shimabu IT University
         </Text>
-        <Text color="white">しまぶーのポートフォリオのためのページです</Text>
-        <div className="mt-8 flex">
-          <TwitterIcon className="mx-1" />
-          <FacebookIcon className="mx-1" />
-          <RssIcon className="mx-1 w-6 text-white" />
+        <div className="flex flex-col lg:flex-row lg:justify-between lg:pr-12">
+          <Text color="white">しまぶーのポートフォリオのためのページです</Text>
+          <div className="mt-8 flex lg:mt-0 ">
+            <TwitterIcon className="mx-1" />
+            <FacebookIcon className="mx-1" />
+            <RssIcon className="mx-1 w-6 text-white" />
+          </div>
         </div>
       </div>
       <Body />
