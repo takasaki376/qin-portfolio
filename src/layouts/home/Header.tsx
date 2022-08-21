@@ -23,9 +23,13 @@ export const Header: FC = () => {
             title={title}
           />
         </div>
-        <Text size="lg" weight={700} className="my-4 py-4">
-          Shimabu IT University
-        </Text>
+        <Link href="/" passHref>
+          <a>
+            <Text size="lg" weight={700} className="my-4 py-4">
+              Shimabu IT University
+            </Text>
+          </a>
+        </Link>
         <div className="my-4 ml-4">
           <div className="hidden lg:flex lg:flex-row">
             {menus.map((menu, key) => {
