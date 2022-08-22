@@ -4,11 +4,16 @@ import { BlogList } from "src/components/Forms/BlogList";
 import { GithubList } from "src/components/Forms/GithubList";
 import { PortfolioList } from "src/components/Forms/PortfolioList";
 import { TwitterList } from "src/components/Forms/TwitterList";
+import { BlogType } from "src/types/blog";
 
-export const Body: FC = () => {
+type Props = {
+  blog: BlogType[];
+};
+
+export const Body: FC<Props> = ({ blog }) => {
   return (
     <div className="flex flex-col items-center px-8 lg:mx-12">
-      <BlogList top={true} />
+      <BlogList top={true} blog={blog} />
       <div className="">
         <Button color="dark" radius="xl" size="xl" className="my-12">
           View All

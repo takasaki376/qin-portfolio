@@ -1,62 +1,18 @@
 import { Divider, Text, Title } from "@mantine/core";
 import { FC, useState } from "react";
 import cc from "classcat";
-
-type BlogType = {
-  title: string;
-  body: string;
-  date: string;
-};
-
-const data: BlogType[] = [
-  {
-    title: "This is a header",
-    body: "Ament minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.",
-    date: "2022.7.11",
-  },
-  {
-    title: "This is a header",
-    body: "Ament minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.",
-    date: "2022.7.11",
-  },
-  {
-    title: "This is a header",
-    body: "Ament minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.",
-    date: "2022.7.11",
-  },
-  {
-    title: "This is a header",
-    body: "Ament minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.",
-    date: "2022.7.11",
-  },
-  {
-    title: "This is a header",
-    body: "Ament minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.",
-    date: "2022.7.11",
-  },
-  {
-    title: "This is a header",
-    body: "Ament minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.",
-    date: "2022.7.11",
-  },
-  {
-    title: "This is a header",
-    body: "Ament minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.",
-    date: "2022.7.11",
-  },
-  {
-    title: "This is a header",
-    body: "Ament minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.",
-    date: "2022.7.11",
-  },
-];
+import { BlogType } from "src/types/blog";
+import { MicroCMSContentId, MicroCMSDate } from "microcms-js-sdk";
+import DateFormatter from "src/lib/date-formatter";
+import Link from "next/link";
 
 type Props = {
   top: boolean;
+  blog: (BlogType & MicroCMSContentId & MicroCMSDate)[];
 };
 
 export const BlogList: FC<Props> = (props) => {
-  const datawk: BlogType[] = props.top ? data.slice(0, 4) : data;
+  const datawk: BlogType[] = props.top ? props.blog.slice(0, 4) : props.blog;
   const [blogList] = useState<BlogType[]>(datawk);
 
   return (
@@ -70,22 +26,25 @@ export const BlogList: FC<Props> = (props) => {
         Blog
       </Title>
       <Divider />
-
-      {blogList.map((blog, key) => {
-        return (
-          <ul key={key}>
-            <div>
-              <Title order={1} className="mt-8 mb-4">
-                {blog.title}
-              </Title>
-              <Text size="xl">{blog.body}</Text>
-              <Text weight={500} color="gray" className="mb-4 mt-1">
-                {blog.date}
-              </Text>
-            </div>
-          </ul>
-        );
-      })}
+      <ul>
+        {blogList.map((blog, key) => {
+          return (
+            <li key={key}>
+              <Link href={`/blog/${blog.id}`} passHref>
+                <a>
+                  <Title order={1} className="mt-8 mb-4">
+                    {blog.title}
+                  </Title>
+                  <Text size="xl">{blog.content}</Text>
+                  <Text weight={500} color="gray" className="mb-4 mt-1">
+                    <DateFormatter dateString={blog.createdAt} />
+                  </Text>
+                </a>
+              </Link>
+            </li>
+          );
+        })}
+      </ul>
     </div>
   );
 };

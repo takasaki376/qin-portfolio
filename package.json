@@ -6,7 +6,8 @@
     "dev:path": "pathpida --ignorePath .gitignore --watch",
     "build": "pathpida --ignorePath .gitignore && next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "gen:types": "npx microcms-typescript src/cms/schema src/cms/types/response.ts"
   },
   "dependencies": {
     "@headlessui/react": "^1.6.6",
@@ -14,8 +15,10 @@
     "@mantine/core": "4.2.8",
     "@mantine/hooks": "4.2.8",
     "@mantine/next": "4.2.8",
+    "axios": "^0.27.2",
     "classcat": "^5.0.3",
     "jotai": "^1.7.7",
+    "microcms-js-sdk": "^2.2.1",
     "next": "12.1.7-canary.33",
     "react": "18.1.0",
     "react-dom": "18.1.0",
@@ -29,6 +32,7 @@
     "eslint": "8.17.0",
     "eslint-config-next": "12.1.6",
     "eslint-config-prettier": "8.5.0",
+    "microcms-typescript": "^1.0.13",
     "pathpida": "0.18.1",
     "postcss": "8.4.14",
     "prettier": "2.6.2",

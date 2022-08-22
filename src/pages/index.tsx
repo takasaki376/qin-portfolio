@@ -1,5 +1,5 @@
 import { useAtomValue } from "jotai";
-import type { NextPage } from "next";
+import type { GetStaticProps, NextPage } from "next";
 import { Body } from "src/components/Forms/Body";
 import { openMenu } from "src/lib/atom";
 import { useMediaQuery, useViewportSize } from "src/lib/mantine";
@@ -8,8 +8,20 @@ import { TwitterIcon } from "src/components/icons/TwitterIcon";
 import { FacebookIcon } from "src/components/icons/FacebookIcon";
 import { Text } from "@mantine/core";
 import { RssIcon } from "@heroicons/react/solid";
+import { BlogType } from "../types/blog";
+import { client } from "src/lib/clientBlog";
+import { MicroCMSListResponse } from "microcms-js-sdk";
 
-const Home: NextPage = () => {
+export const getStaticProps: GetStaticProps = async () => {
+  const blogs = await client.get({ endpoint: "blogs" });
+  return {
+    props: blogs,
+  };
+};
+
+type Props = MicroCMSListResponse<BlogType>;
+
+const Home: NextPage<Props> = (props) => {
   const opened = useAtomValue(openMenu);
   // const { width } = useViewportSize();
   // const largerThanXs = useMediaQuery("xs");
@@ -33,7 +45,7 @@ const Home: NextPage = () => {
           </div>
         </div>
       </div>
-      <Body />
+      <Body blog={props.contents} />
     </Layout>
   );
 };

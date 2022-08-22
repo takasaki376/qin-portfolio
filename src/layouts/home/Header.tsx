@@ -14,7 +14,7 @@ export const Header: FC = () => {
   const title = opened ? "Close navigation" : "Open navigation";
 
   return (
-    <div className="fixed inset-0 z-30 w-full">
+    <div className="fixed inset-0 z-30 h-24 w-full">
       <div className="flex justify-between bg-white px-8 ">
         <div className="mr-4 mb-4 mt-4 pt-2 lg:hidden lg:pt-0 ">
           <Burger
