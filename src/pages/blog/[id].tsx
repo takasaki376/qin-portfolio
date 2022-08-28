@@ -1,6 +1,6 @@
 import { Text, Title } from "@mantine/core";
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
-import { client } from "src/lib/clientBlog";
+import { client } from "src/lib/clientMicroCms";
 import { BlogType } from "src/types/blog";
 
 type PathProps = { id: string };

@@ -3,76 +3,21 @@ import Image, { ImageProps } from "next/image";
 import { FC, useState } from "react";
 import { useMediaQuery } from "src/lib/mantine";
 import cc from "classcat";
-
-type PortfolioType = {
-  image: ImageProps["src"];
-  title: string;
-  body: string;
-  date: string;
-};
-
-const data: PortfolioType[] = [
-  {
-    image: "/image.png",
-    title: "IT KINGDOM",
-    body: "当サロンのLPページ。React、Next.js、TypeScriptなどのモダンな技術を用いて作られています。初心者にちょうど良い難易度の制作物です。",
-    date: "2022.7.11",
-  },
-  {
-    image: "/image.png",
-    title: "IT KINGDOM",
-    body: "当サロンのLPページ。React、Next.js、TypeScriptなどのモダンな技術を用いて作られています。初心者にちょうど良い難易度の制作物です。",
-    date: "2022.7.11",
-  },
-  {
-    image: "/image.png",
-    title: "IT KINGDOM",
-    body: "当サロンのLPページ。React、Next.js、TypeScriptなどのモダンな技術を用いて作られています。初心者にちょうど良い難易度の制作物です。",
-    date: "2022.7.11",
-  },
-  {
-    image: "/image.png",
-    title: "IT KINGDOM",
-    body: "当サロンのLPページ。React、Next.js、TypeScriptなどのモダンな技術を用いて作られています。初心者にちょうど良い難易度の制作物です。",
-    date: "2022.7.11",
-  },
-  {
-    image: "/image.png",
-    title: "IT KINGDOM",
-    body: "当サロンのLPページ。React、Next.js、TypeScriptなどのモダンな技術を用いて作られています。初心者にちょうど良い難易度の制作物です。",
-    date: "2022.7.11",
-  },
-  {
-    image: "/image.png",
-    title: "IT KINGDOM",
-    body: "当サロンのLPページ。React、Next.js、TypeScriptなどのモダンな技術を用いて作られています。初心者にちょうど良い難易度の制作物です。",
-    date: "2022.7.11",
-  },
-  {
-    image: "/image.png",
-    title: "IT KINGDOM",
-    body: "当サロンのLPページ。React、Next.js、TypeScriptなどのモダンな技術を用いて作られています。初心者にちょうど良い難易度の制作物です。",
-    date: "2022.7.11",
-  },
-  {
-    image: "/image.png",
-    title: "IT KINGDOM",
-    body: "当サロンのLPページ。React、Next.js、TypeScriptなどのモダンな技術を用いて作られています。初心者にちょうど良い難易度の制作物です。",
-    date: "2022.7.11",
-  },
-];
+import { MicroCMSContentId, MicroCMSDate } from "microcms-js-sdk";
+import { PortfolioType } from "src/types/blog";
 
 type Props = {
   top: boolean;
+  portfolio: (PortfolioType & MicroCMSContentId & MicroCMSDate)[];
 };
 
 export const PortfolioList: FC<Props> = (props) => {
   const isMediaQuery = useMediaQuery("lg");
   const datawk: PortfolioType[] = !props.top
-    ? data
+    ? props.portfolio
     : isMediaQuery
-    ? data.slice(0, 6)
-    : data.slice(0, 4);
+    ? props.portfolio.slice(0, 6)
+    : props.portfolio.slice(0, 4);
 
   const [portfolioList] = useState<PortfolioType[]>(datawk);
   return (
@@ -89,7 +34,7 @@ export const PortfolioList: FC<Props> = (props) => {
             <ul key={key}>
               <div className="my-8 mx-4">
                 <Image
-                  src={portfolio.image}
+                  src={portfolio.image.url}
                   alt=""
                   width={3300}
                   height={1400}
@@ -99,7 +44,7 @@ export const PortfolioList: FC<Props> = (props) => {
                 </Title>
                 <Text size="xl">{portfolio.body}</Text>
                 <Text weight={500} color="gray" className="mb-4 mt-1">
-                  {portfolio.date}
+                  {portfolio.updatedAt}
                 </Text>
               </div>
             </ul>

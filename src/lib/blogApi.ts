@@ -1,6 +1,6 @@
 import axios from "axios";
 import { BlogType } from "../types/blog";
-import { client } from "src/lib/clientBlog";
+import { client } from "src/lib/clientMicroCms";
 
 export const apiUrl = `${process.env.NEXT_PUBLIC_BLOG_URL}blog/`;
 

@@ -2,7 +2,7 @@ import { MicroCMSListResponse } from "microcms-js-sdk";
 import { GetStaticProps, NextPage } from "next";
 import { BlogList } from "src/components/Forms/BlogList";
 import { Layout } from "src/layouts/home/layout";
-import { client } from "src/lib/clientBlog";
+import { client } from "src/lib/clientMicroCms";
 import { BlogType } from "src/types/blog";
 
 export const getStaticProps: GetStaticProps = async () => {

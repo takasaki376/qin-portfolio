@@ -8,18 +8,25 @@ import { TwitterIcon } from "src/components/icons/TwitterIcon";
 import { FacebookIcon } from "src/components/icons/FacebookIcon";
 import { Text } from "@mantine/core";
 import { RssIcon } from "@heroicons/react/solid";
-import { BlogType } from "../types/blog";
-import { client } from "src/lib/clientBlog";
+import { BlogType, PortfolioType } from "../types/blog";
+import { client } from "src/lib/clientMicroCms";
 import { MicroCMSListResponse } from "microcms-js-sdk";
 
 export const getStaticProps: GetStaticProps = async () => {
   const blogs = await client.get({ endpoint: "blogs" });
+  const portfolios = await client.get({ endpoint: "portfolio" });
   return {
-    props: blogs,
+    props: {
+      blogs: blogs,
+      portfolios: portfolios,
+    },
   };
 };
 
-type Props = MicroCMSListResponse<BlogType>;
+type Props = {
+  blogs: MicroCMSListResponse<BlogType>;
+  portfolios: MicroCMSListResponse<PortfolioType>;
+};
 
 const Home: NextPage<Props> = (props) => {
   const opened = useAtomValue(openMenu);
@@ -45,7 +52,7 @@ const Home: NextPage<Props> = (props) => {
           </div>
         </div>
       </div>
-      <Body blog={props.contents} />
+      <Body blog={props.blogs.contents} portfolio={props.portfolios.contents} />
     </Layout>
   );
 };
