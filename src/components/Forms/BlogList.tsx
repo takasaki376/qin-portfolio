@@ -35,7 +35,9 @@ export const BlogList: FC<Props> = (props) => {
                   <Title order={1} className="mt-8 mb-4">
                     {blog.title}
                   </Title>
-                  <Text size="xl">{blog.content}</Text>
+                  <Text size="xl" lineClamp={3}>
+                    {blog.content}
+                  </Text>
                   <Text weight={500} color="gray" className="mb-4 mt-1">
                     <DateFormatter dateString={blog.createdAt} />
                   </Text>
